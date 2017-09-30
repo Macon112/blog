@@ -1,0 +1,44 @@
+{%extends 'layout.html'%}
+
+{%block content%}
+{% for content in contents %}
+<div class="neirongbox panel panel-default">
+    <h3><strong><p class="text-center">{{content.title}}</p></strong></h3>
+    <div class="panel-body">
+        <dfn><p>{{content.description}}</p></dfn>
+        <button type="button" class="function btn "><a href="/view?contentid={{content.id}}">阅读全文</a></button>
+    </div>
+    <div class="panel-footer">
+        <p class="colDefault">
+            作者：<span class="colInfo">{{content.user.username}}</span> -
+            时间：<span class="colInfo">{{content.addTime|date('Y年m月d日 H:i:s',-8*60)}}</span> -
+            阅读：<span class="colInfo">{{content.view}}</span> -
+            评论：<span class="colInfo">{{content.comments.length}}</span>
+        </p>
+    </div>
+</div>
+{% endfor %}
+<nav aria-label="...">
+    <ul class="before pager">
+        {%if page<= 1%}
+        <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span>没有上一页</a></li>
+        {%else%}
+        <li class="previous"><a href="/?category={{category}}&page={{page-1}}"><span aria-hidden="true">&larr;</span>上一页</a></li>
+        {%endif%}
+
+        <li>
+            {%if pages == 0%}
+            <strong>该分类没有内容</strong>
+            {%else%}
+            <strong>{{page}}/{{pages}}</strong>
+            {%endif%}
+        </li>
+
+        {%if page>= pages%}
+        <li class="next disabled"><a href="#">没有下一页 <span aria-hidden="true">&rarr;</span></a></li>
+        {%else%}
+        <li class="next"><a href="/?category={{category}}&page={{page+1}}">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+        {%endif%}
+    </ul>
+</nav>
+{%endblock%}

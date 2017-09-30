@@ -1,0 +1,48 @@
+{%extends 'layout.html'%}
+
+{%block content%}
+<div class="panel panel-default">
+    <h3><p class="text-center">{{content.title}}</p></h3>
+    <div id="content">
+    <p class="colDefault text-center">
+        作者：<span class="colInfo">{{content.user.username}}</span> -
+        时间：<span class="colInfo">{{content.addTime|date('Y年m月d日 H:i:s',-8*60)}}</span> -
+        阅读：<span class="colInfo">{{content.view}}</span> -
+        评论：<span class="colInfo">10</span>
+    </p>
+    <dfn>
+        <p>{{content.content}}</p>
+    </dfn>
+    </div>
+</div>
+
+<div class="message panel panel-default">
+    <h3 class="testLeft"><strong>评论</strong><span class="em">一共有<em id="messageCount"></em>条评论 </span></h3>
+
+    {% if userInfo._id %}
+    <h4><p>{{userInfo.username}}</p></h4>
+    <div class="input-group">
+        <input type="hidden" id="contentId" value="{{content.id}}">
+        <input class="form-control" id="messageContent">
+        <span class="input-group-btn"><button id="messageBtn" class="btn btn-default" >提交</button></span>
+    </div>
+    {%else%}
+    <input type="hidden" id="contentId" value="{{content.id}}">
+    <p class="bgDanger" style="line-height: 30px;">你还没有登陆，请先登录！</p>
+    {%endif%}
+</div>
+    <div class="messageList panel panel-default" >
+    </div>
+
+<nav aria-label="..." class="fenye">
+    <ul class="pager">
+        <li class="before">
+        </li>
+        <li class="zhongjian">
+        </li>
+        <li class="next">
+        </li>
+    </ul>
+</nav>
+
+{%endblock%}

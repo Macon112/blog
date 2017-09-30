@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+}
+#yetou {
+    background-color: #00CC99;
+}
+#yetou span {
+}
+#neirong {
+    background-color: #1b6d85;
+}
+#neirong div {
+    padding: 5px;
+}
+.rightBox {
+    background-color: white;
+}

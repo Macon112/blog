@@ -1,0 +1,48 @@
+@charset "utf-8";
+/* index CSS Document */
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-color: #8c8c8c;
+}
+/*页头*/
+#yetou {
+	background-color: #00CC99;
+	background-image: url("../image/yetou.jpg");
+	color: white;
+}
+/*右侧栏*/
+.rightBox {
+    padding: 15px;
+}
+div.line {
+    margin: 8px 0;
+}
+div.line button{
+    width: 100px;
+    font-weight: bold;
+}
+
+/*左侧栏*/
+
+/*内容*/
+button.function.btn a{
+    color: black;
+}
+#content {
+    padding: 10px;
+}
+.message {
+    padding: 10px;
+}
+.message span.em {
+    float: right;
+}
+.messageList {
+    padding: 10px;
+}
+.messageList p.fr {
+    float: right;
+}

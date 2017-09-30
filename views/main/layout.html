@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>blog-主页</title>
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/public/css/bootstrap-theme.min.css" type="text/css">
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css"/>
+    <script src="/public/js/jquery-3.2.1.js"></script>
+    <script src="/public/js/index.js"></script>
+</head>
+
+<body>
+
+<!--页头内容 -->
+<div id="yetou">
+    <div class="jumbotron" id="yetou">
+        <div class="container">
+    <span>
+    <h1>Macon 的 个人博客</h1>
+    <p>欢迎来到 macon 的个人学习之路</p>
+    </span>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="row">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/">首页</a>
+                    </div>
+
+                    <!--导航栏-->
+                    <div class="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        {%for cate in categories%}
+                        {%if category == cate.id%}
+                        <li class="active"><a href="/?category={{cate.id}}">{{cate.name}}</a></li>
+                        {%else%}
+                        <li><a href="/?category={{cate.id}}">{{cate.name}}</a></li>
+                        {%endif%}
+                        {%endfor%}
+                    </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-lg-2">
+                <ul class="list-group">
+                    {% if contents == 0%}
+                    <li class="list-group-item">该分类没有内容</li>
+                    {% else %}
+                    {% for con in contents %}
+                    <li class="list-group-item"><a href="/view?contentid={{con.id}}">{{con.title}}</a></li>
+                    {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-lg-7">
+                <!--主要内容-->
+                <!--<div id="neirong">-->
+                    {%block content%}{%endblock%}
+                <!--</div>-->
+            </div>
+            <div class="col-lg-3">
+                <!--右侧栏-->
+                {% if userInfo._id %}
+                <div class="rightBox panel panel-default" id="userInfo">
+                    <div class="title"><span><h4><strong>用户信息</strong></h4></span></div>
+                    <p><span>{{userInfo.username}}</span></p>
+                    {%if userInfo.isAdmin %}
+                    <p>
+                        <span class="colDanger info">你好，管理员！</span>
+                        <a href="/admin">进入管理</a>
+                    </p>
+                    {% else %}
+                    <p><span class="colDanger info">你好，欢迎光临我的博客</span></p>
+                    {% endif %}
+                    <p><span class="colDark"><a href="javascript:;" id="logout">退出</a></span></p>
+                </div>
+                {% else %}
+
+                <div class="rightBox panel panel-default" id="loginBox" >
+                    <div class="title"><span><h4><strong>登陆</strong></h4></span></div>
+                    <div class="line input-group input-group-sm"><span class="colDark input-group-addon">用户名：</span>
+                        <input name="username" type="text" class="form-control" placeholder="Username"/>
+                        <em></em></div>
+                    <div class="line input-group input-group-sm"><span class="colDark input-group-addon">密码&nbsp&nbsp&nbsp&nbsp：</span>
+                        <input name="password" type="password" class="form-control" placeholder="password"/>
+                        <em></em></div>
+                    <div class="line "><span class="colDark"></span>
+                        <p class="text-center"><button class="btn btn-default btn-sm ">登 陆</button></p>
+                    </div>
+                    <p class="text-right">还没注册？<a href="javascript:;" class="colMint">马上注册</a> </p>
+                    <p class="colWarning text-center"></p>
+                </div>
+
+                <div class="rightBox panel panel-default" id="registerBox" style="display:none">
+                    <div class="title"><span><h4><strong>注册</strong></h4></span></div>
+                    <div class="line input-group input-group-sm"><span class="colDark input-group-addon">用户名：</span>
+                        <input name="username" type="text" class="form-control" placeholder="Username"/>
+                    </div>
+                    <div class="line input-group input-group-sm"><span class="colDark input-group-addon">密码&nbsp&nbsp&nbsp&nbsp：</span>
+                        <input name="password" type="password" class="form-control" placeholder="password"/>
+                    </div>
+                    <div class="line input-group input-group-sm"><span class="colDark input-group-addon">确认&nbsp&nbsp&nbsp&nbsp：</span>
+                        <input name="repassword" type="password" class="form-control" placeholder="password"/>
+                    </div>
+                    <div class="line"><span class="colDark"></span>
+                        <p class="text-center"><button class="btn btn-default btn-sm">注 册</button></p>
+                    </div>
+                    <p class="text-right">已有账号？<a href="javascript:;" class="colMint">马上登陆</a> </p>
+                    <p class="colWarning text-center"></p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="/public/js/bootstrap.min.js"></script>
+<script src="/public/js/comment.js"></script>
+</html>
